@@ -9,7 +9,7 @@ const Input = (props) => {
 
 const Inpt= styled.input`
   height: 45px;
-  width: 350px;
+  width: 250px;
   margin: 10px 0;
   border: .1rem #ddd solid;
   padding: 0 0 0 10px;

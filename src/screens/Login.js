@@ -7,17 +7,21 @@ import React, {
   import Button from '../component/Button'
   import Input from '../component/Input'
   import styled from 'styled-components'
+
   const axios = require('axios');
   
   
   const Login = ({history}) => {
   
-    useEffect(()=>{
+   /*  useEffect(()=>{
       const token = localStorage.getItem('token')
-      if(token){
+      if(Storage.length!==0){
         history.push('/products')
+      } else {
+        history.push('/')
       }
-    }, [])
+    }, []) */
+
     const [username, setUserName] = useState("");
     const [password, setPassword] = useState("");
   
@@ -37,7 +41,6 @@ import React, {
       })
     }
   
-  
     return ( 
       <LoginSection>
         <Navbar/>
@@ -49,7 +52,7 @@ import React, {
         <div>
           <Input type="password" placeholder="Mot de passe" value={password} onChange= {e => setPassword(e.target.value)}/>
         </div> 
-        <Button type="submit" disabled = {!validateFormFields()}/>
+        <Button type="submit" disabled = {!validateFormFields()} texte="Login"/>
         </Form > 
         <Footer/>
       </LoginSection>
@@ -75,7 +78,7 @@ import React, {
   const Form = styled.form`
     border: .1rem #ddd solid;
     background-color: #fff;
-    width: 390px;
+    width: 300px;
     border-radius: 0.2rem;
     display: flex;
     flex-direction: column;
