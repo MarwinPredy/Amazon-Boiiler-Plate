@@ -28,6 +28,9 @@ const Detail = props => {
       <p>{detail.brand}</p>
       <p>{detail.weight}</p>
       <p>{detail.raw}</p>
+      <p>{detail.type}</p>
+      <p>{detail.connector}</p>
+      <p>{detail.tension}</p>
       <button></button>
 
   </div>
