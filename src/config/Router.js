@@ -1,5 +1,5 @@
-import React, {Component,useState,useEffect} from 'react';
-import {BrowserRouter as Router,Switch,Route,Link, Redirect, useLocation} from "react-router-dom";
+import React from 'react';
+import {BrowserRouter as Router,Switch,Route} from "react-router-dom";
 
 import Login from '../screens/Login'
 import Products from '../screens/Products'

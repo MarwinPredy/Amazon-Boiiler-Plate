@@ -10,7 +10,6 @@ import img2 from '../assets/prime.png'
 const axios = require('axios');
 
 
-
 const Products = () => {
 
   const[productList, setProductList] = useState([])
