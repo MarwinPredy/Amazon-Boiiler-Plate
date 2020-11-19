@@ -18,26 +18,64 @@ const Detail = props => {
   }, [])
 
   const handleShop = (product) =>{
-    const currentShop = sessionStorage.getItem('shop') ? JSON.parse(sessionStorage.getItem('shop')) : []
-    currentShop.push(product)
-    sessionStorage.setItem('shop', JSON.stringify(currentShop))
+    const currentShop = localStorage.getItem('shop') ? JSON.parse(localStorage.getItem('shop')) : []
+    const isPresent = currentShop.map(e =>e.id).indexOf(product.id)
+    if(isPresent===-1){
+      currentShop.push(product)
+    }else{
+      const filteredProduct = currentShop.filter(item => item.id !== product.id)
+    }
+    localStorage.setItem('shop', JSON.stringify(currentShop))
   }
 
   return (
-  <div>
-      <p>{detail.title}</p>
-      <p>{detail.price}</p>
-      <p>{detail.color}</p>
-      <p>{detail.brand}</p>
-      <p>{detail.weight}</p>
-      <p>{detail.raw}</p>
-      <p>{detail.type}</p>
-      <p>{detail.connector}</p>
-      <p>{detail.tension}</p>
-      <button onClick={()=> handleShop({id: props.match.params.id, title: detail.title, price: detail.price })}></button>
-
-  </div>
+  <Wrapper>
+      <Card>
+        <h3>{detail.title}</h3>
+        <div>
+          <p>Prix: {detail.price}</p>
+        </div>
+        <div>
+          <p>Couleur: {detail.color}</p>
+        </div>
+        {detail.brand && <div>
+          <p>Marque: {detail.brand}</p>
+        </div>}
+        {detail.weight &&<div>
+          <p>Poids: {detail.weight}</p>
+        </div>}
+        {detail.raw &&<div>
+          <p>Matière: {detail.raw}</p>
+        </div>}
+        {detail.type &&<div>
+          <p>Type: {detail.type}</p>
+        </div>}
+        {detail.connector &&<div>
+          <p>Connecteur: {detail.connector}</p>
+        </div>}
+        {detail.tension &&<div>
+          <p>Alimentation: {detail.tension}</p>
+        </div>}
+        <button onClick={()=> handleShop({id: props.match.params.id, title: detail.title, price: detail.price })}>Ajouter au panier</button>
+      </Card>
+  </Wrapper>
   )
 }; 
+
+const Wrapper = styled.div`
+display: flex;
+position: fixed;
+flex-direction: column;
+align-items: center;
+width: 100%;
+`;
+const Card = styled.div`
+display: flex;
+position: fixed;
+flex-direction: column;
+align-items: center;
+width: 100%;
+`;
+
 
 export default Detail;

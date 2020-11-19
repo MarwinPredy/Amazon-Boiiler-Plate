@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from 'react';
-import{Link} from 'react-router-dom'
 import styled from 'styled-components';
 import Header from '../component/Header'
 import SearchBar from '../component/SearchBar'
@@ -7,13 +6,16 @@ import BottomNav from '../component/BottomNav'
 import AdressBar from '../component/AdressBar'
 import img1 from '../data/img/81jfo0rafsL._AC_UL320_.jpg'
 import img2 from '../assets/prime.png'
-const axios = require('axios');
 
-
+const GetlocalStorage = ()=>{
+  let result = []
+  try{result = JSON.parse(localStorage.getItem('shop')) || []}
+  catch{result = []}
+  return result
+}
 const Panier = () => {
 
-  const getStorage = JSON.parse(sessionStorage.getItem('shop'))
-  console.log(getStorage)
+  const[article, setArticle] = useState(GetlocalStorage)
 
   return (
   <div>
@@ -25,8 +27,8 @@ const Panier = () => {
       <TitleProduct>Panier :</TitleProduct>
     </BigBar>
     <CardWrapper>
-    {getStorage.map(product => 
-      <Card>
+    {article.length >0 ? article.map(product => 
+      <Card key={product.id}>
         <Row>
           <ImgWrapper>
             <Img src={img1}></Img>
@@ -43,7 +45,7 @@ const Panier = () => {
           </InfoWrapper>
         </Row>
       </Card>
-    )}
+    ) : <span>Votre panier est vide</span>}
   </CardWrapper>  
   </div>
   

@@ -4,11 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import styled from 'styled-components'
 import logo from '../assets/logo.png'
 
-const Header = ({history}) => {
-
-  function disconnect() {
-      localStorage.clear()
-  }
+const Header = () => {
 
   return (
     <Wrapper>
@@ -22,7 +18,7 @@ const Header = ({history}) => {
                 <Img className="logo" src={logo} alt="logo"></Img>
             </ImgWrapper>
             <LeftNav>
-              <Link to="/" onClick={disconnect()}><StyledFontAwesomeIcon icon="sign-out-alt" /></Link>
+              <Link to="/" onClick={()=>{localStorage.clear()}}><StyledFontAwesomeIcon icon="sign-out-alt" /></Link>
               <Link to='/panier'><StyledFontAwesomeIcon icon="cart-arrow-down" /></Link>
             </LeftNav>
         </Container>

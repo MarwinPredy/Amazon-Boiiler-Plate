@@ -3,9 +3,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import styled from 'styled-components'
 
 const SearchBar = (props) => {
+
   return (
     <Wrapper>
-      <SrchBar type={props.type} disabled={props.disabled} placeholder="Rechercher Amazon.fr"></SrchBar>
+      <SrchBar type={props.type}  placeholder="Rechercher Amazon.fr" value={props.value} onChange={props.onChange}></SrchBar>
       <Btn>
         <StyledFontAwesomeIcon icon="search" />
       </Btn>

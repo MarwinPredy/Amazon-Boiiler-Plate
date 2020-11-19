@@ -1,6 +1,7 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react'
 import{Link} from 'react-router-dom'
-import styled from 'styled-components';
+import {matchSorter} from 'match-sorter'
+import styled from 'styled-components'
 import Header from '../component/Header'
 import SearchBar from '../component/SearchBar'
 import BottomNav from '../component/BottomNav'
@@ -12,7 +13,11 @@ const axios = require('axios');
 
 const Products = () => {
 
-  const[productList, setProductList] = useState([])
+  const[productList, setProductList] = useState([]);
+  const [value, setValue] = useState("");
+
+  const sortedProduct = matchSorter(productList, value, {keys:  ['title','brand']})
+  console.log(sortedProduct)
 
   useEffect(()=>{
 
@@ -29,14 +34,14 @@ const Products = () => {
   <div>
     <BigBar>
       <Header/>
-      <SearchBar/>
+      <SearchBar type="input" value={value} onChange={e => setValue(e.target.value)}/>
       <BottomNav/>
       <AdressBar/>
       <TitleProduct>Produits :</TitleProduct>
     </BigBar>
     <CardWrapper>
-    {productList.map(product => 
-      <Card>
+    {sortedProduct.map(product => 
+      <Card key={product.id}>
         <Row>
           <ImgWrapper>
             <Img src={img1}></Img>
@@ -52,7 +57,7 @@ const Products = () => {
             <Texte3>Livraison GRATUITE par Amazon</Texte3>
           </InfoWrapper>
         </Row>
-        <LinkWrapper key={product.id}>
+        <LinkWrapper>
           <StyledLink to={`/detail/${product.id}`}>Voir produit</StyledLink>
         </LinkWrapper>
       </Card>
