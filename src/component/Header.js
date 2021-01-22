@@ -1,4 +1,5 @@
 import React from 'react';
+import Counter from '../component/Counter'
 import{Link} from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import styled from 'styled-components'
@@ -20,6 +21,7 @@ const Header = () => {
             <LeftNav>
               <Link to="/" onClick={()=>{localStorage.clear()}}><StyledFontAwesomeIcon icon="sign-out-alt" /></Link>
               <Link to='/panier'><StyledFontAwesomeIcon icon="cart-arrow-down" /></Link>
+              <Counter></Counter>
             </LeftNav>
         </Container>
     </Wrapper>
